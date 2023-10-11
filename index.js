@@ -13,13 +13,21 @@ app.use(bodyParser.json());
 app.get("/", async (req, res) => {
   const activities = await dbHelper.getAllActivities();
   const formattedActivities = activities.map((activity) => {
-    const formattedDate = activity.date.toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    });
     const activityObject = activity.toObject();
-    activityObject.date = formattedDate;
+    activityObject.createdDate = activity.createdDate.toLocaleDateString(
+      "en-US",
+      {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      }
+    );
+    if (activityObject.dueDate)
+      activityObject.dueDate = activity.dueDate.toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      });
     return activityObject;
   });
   console.log(formattedActivities);
@@ -28,7 +36,12 @@ app.get("/", async (req, res) => {
 
 app.post("/post", async (req, res) => {
   console.log(req.body);
-  const activity = new model.Activity(req.body.activity, req.body.date, false);
+  const activity = new model.Activity(
+    req.body.activity,
+    Date.now(),
+    req.body.date,
+    false
+  );
   await dbHelper.addActivity(activity);
   res.redirect("/");
 });

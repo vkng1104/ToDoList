@@ -110,6 +110,6 @@ function datePicker() {
   });
 }
 
+datePicker();
 editIconClick();
 deleteIconClick();
-datePicker();

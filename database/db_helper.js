@@ -14,7 +14,8 @@ const activitySchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  date: Date,
+  createdDate: Date,
+  dueDate: Date,
   finished: Boolean,
 });
 
@@ -23,7 +24,8 @@ const Activity = mongoose.model("Activity", activitySchema);
 async function addActivity(activity) {
   const addedActivity = new Activity({
     name: activity.name,
-    date: activity.date,
+    createdDate: activity.createdDate,
+    dueDate: activity.dueDate,
     finished: activity.finished,
   });
 

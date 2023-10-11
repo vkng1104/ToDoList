@@ -1,8 +1,8 @@
 class Activity {
-  constructor(name, date, dateStr, finished) {
+  constructor(name, createdDate, dueDate, finished) {
     this.name = name;
-    this.date = date;
-    this.dateStr = dateStr;
+    this.createdDate = createdDate;
+    this.dueDate = dueDate;
     this.finished = finished;
   }
 }
