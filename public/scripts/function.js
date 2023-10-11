@@ -88,5 +88,28 @@ function deleteIconClick() {
   });
 }
 
+function datePicker() {
+  const pickedDate = $("#addDateControlInput");
+  const datePickerBtn = $("#datepicker");
+  pickedDate.datepicker({
+    minDate: 0,
+  }); // create a datepicker
+
+  // click button to show date picker
+  datePickerBtn.on("click", () => {
+    pickedDate.datepicker("show");
+  });
+
+  pickedDate.on("change", () => {
+    const addedActivity = $("#addActControlInput");
+    if (addedActivity.val() !== "") {
+      datePickerBtn.attr("title", pickedDate.val());
+    } else {
+      datePickerBtn.attr("title", "Set due date");
+    }
+  });
+}
+
 editIconClick();
 deleteIconClick();
+datePicker();

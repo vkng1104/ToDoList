@@ -28,7 +28,7 @@ app.get("/", async (req, res) => {
 
 app.post("/post", async (req, res) => {
   console.log(req.body);
-  const activity = new model.Activity(req.body.activity, new Date(), false);
+  const activity = new model.Activity(req.body.activity, req.body.date, false);
   await dbHelper.addActivity(activity);
   res.redirect("/");
 });

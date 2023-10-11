@@ -16,3 +16,9 @@ input:disabled {
     background-color: lightgray;
     border: 1px solid darkgray;
 }
+
+#addDateControlInput {
+    border: none;
+    outline: none;
+    width: 0;
+}
