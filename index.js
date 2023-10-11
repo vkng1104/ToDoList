@@ -33,8 +33,9 @@ app.post("/post", async (req, res) => {
   res.redirect("/");
 });
 
-app.post("/put/:activityID", (req, res) => {
+app.post("/put/:activityID", async (req, res) => {
   console.log(req.body);
+  await dbHelper.updateActivity(req.body);
   res.redirect("/");
 });
 

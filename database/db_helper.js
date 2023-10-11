@@ -48,4 +48,17 @@ async function getAllActivities() {
   }
 }
 
-export { addActivity, getAllActivities };
+async function updateActivity(activity) {
+  try {
+    const result = await Activity.findOneAndUpdate(
+      { _id: activity._id },
+      activity,
+      { new: true }
+    );
+    console.log("Activity modified: ", result.modifiedCount);
+  } catch (error) {
+    console.error("Error adding activity:", error);
+  }
+}
+
+export { addActivity, getAllActivities, updateActivity };

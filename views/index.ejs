@@ -64,29 +64,26 @@
               <div>
                 <% if (locals.activities) {%>
                   <% activities.forEach((activity, index)=> { %>
-                    <ul class="list-group list-group-horizontal rounded-0 bg-transparent">
+                    <ul class="list-group list-group-horizontal rounded-0 bg-transparent" id="<%= activity._id %>">
                       <li
                         class="list-group-item d-flex align-items-center ps-0 pe-3 py-1 rounded-0 border-0 bg-transparent">
-                        <form method="post" action="/put/<%= index %>">
-                          <div class="form-check">
-                            <input class="form-check-input me-0" type="checkbox" name="finished" value=""
-                              disabled="disabled" id="checkbox<%= index %>" aria-label="..." <%=activity.finished
-                              ? 'checked' : '' %> />
-                          </div>
-                        </form>
+                        <div class="form-check">
+                          <input class="form-check-input me-0" type="checkbox" name="finished" disabled="disabled"
+                            id="checkbox<%= index %>" aria-label="..." <%=activity.finished ? 'checked' : '' %> />
+                        </div>
                       </li>
                       <li
                         class="list-group-item px-3 py-1 d-flex align-items-center flex-grow-1 border-0 bg-transparent">
                         <input type="text" name="activity"
                           class="form-control form-control-lg lead fw-normal mb-0 <%= activity.finished ? '' : 'bg-light w-100 ms-n2 ps-2 py-1 rounded' %>"
-                          value="<%= activity.name %>" disabled>
+                          value="<%= activity.name %>" disabled id="activity<%= index %>">
                         </input>
                       </li>
                       <li class="list-group-item ps-3 pe-0 py-1 rounded-0 border-0 bg-transparent">
                         <div class="d-flex flex-row justify-content-end mb-1">
-                          <a href="#!" class="text-info" data-mdb-toggle="tooltip" title="Edit todo"><i
-                              class="fas fa-pencil-alt me-3"></i></a>
-                          <a href="#!" class="text-danger" data-mdb-toggle="tooltip" title="Delete todo"><i
+                          <a href="#!" class="text-info edit-icon" data-mdb-toggle="tooltip" title="Edit"
+                            id="editIcon<%= index %>"><i class="fas fa-pencil-alt me-3"></i></a>
+                          <a href="#!" class="text-danger" data-mdb-toggle="tooltip" title="Delete"><i
                               class="fas fa-trash-alt"></i></a>
                         </div>
                         <div class="text-end text-muted">
@@ -99,6 +96,7 @@
                         </div>
                       </li>
                     </ul>
+
                     <% }) %>
                       <% } else { %>
                         <h1>Add Activities</h1>
@@ -110,6 +108,9 @@
       </div>
     </div>
   </section>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <script src="scripts/function.js"></script>
 </body>
 
 </html>
