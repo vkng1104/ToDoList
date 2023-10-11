@@ -50,15 +50,22 @@ async function getAllActivities() {
 
 async function updateActivity(activity) {
   try {
-    const result = await Activity.findOneAndUpdate(
-      { _id: activity._id },
-      activity,
-      { new: true }
-    );
-    console.log("Activity modified: ", result.modifiedCount);
+    await Activity.findOneAndUpdate({ _id: activity._id }, activity, {
+      new: true,
+    });
+    console.log("Successfully modified!");
   } catch (error) {
     console.error("Error adding activity:", error);
   }
 }
 
-export { addActivity, getAllActivities, updateActivity };
+async function deleteActivity(activity) {
+  try {
+    await Activity.findOneAndDelete({ _id: activity._id });
+    console.log("Successfully delete!");
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+export { addActivity, getAllActivities, updateActivity, deleteActivity };

@@ -39,6 +39,12 @@ app.post("/put/:activityID", async (req, res) => {
   res.redirect("/");
 });
 
+app.post("/delete/:activityID", async (req, res) => {
+  console.log(req.body);
+  await dbHelper.deleteActivity(req.body);
+  res.redirect("/");
+});
+
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });

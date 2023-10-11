@@ -65,4 +65,28 @@ function editIconClick() {
   });
 }
 
+function deleteIconClick() {
+  const activities = $(".delete-icon");
+  activities.each((index) => {
+    const activityCard = $(`#deleteIcon${index}`);
+    activityCard.on("click", () => {
+      const _id = activityCard.closest("ul").attr("id");
+      fetch(`/delete/${index}`, {
+        method: "post",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ _id: _id }),
+      })
+        .then((response) => {
+          if (response.ok) {
+            console.log("Delete request successful");
+          } else {
+            console.error("Delete request failed");
+          }
+        })
+        .catch((err) => console.log(err));
+    });
+  });
+}
+
 editIconClick();
+deleteIconClick();
