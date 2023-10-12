@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 
-const url = "mongodb://127.0.0.1:27017";
+const url =
+  "mongodb+srv://khanhroonar:8lTtfpYhC0AFDSDg@cluster0.dvctybd.mongodb.net";
 const dbName = "ActivitiesDB";
 
 async function main() {
