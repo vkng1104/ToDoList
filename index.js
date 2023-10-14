@@ -65,10 +65,6 @@ app.get("/", async (req, res) => {
   });
 });
 
-app.post("/filter", (req, res) => {
-  res.redirect(`/?filter=${req.body.filter}`);
-});
-
 app.post("/post", async (req, res) => {
   console.log(req.body);
   const activity = new model.Activity(
