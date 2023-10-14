@@ -92,7 +92,7 @@ function datePicker() {
   const pickedDate = $("#addDateControlInput");
   const datePickerBtn = $("#datepicker");
   pickedDate.datepicker({
-    // minDate: 0,
+    minDate: 0,
   }); // create a datepicker
 
   // click button to show date picker
@@ -110,34 +110,15 @@ function datePicker() {
   });
 }
 
-function filterActivities() {
-  const selectFilter = $("#select-filter");
-
-  selectFilter.on("change", () => {
-    let selectedValue = selectFilter.val();
-    console.log(selectedValue);
-    let filteredAction = "All";
-    switch (selectedValue) {
-      case "1":
-        filteredAction = "All";
-        break;
-      case "2":
-        filteredAction = "Completed";
-        break;
-      case "3":
-        filteredAction = "Active";
-        break;
-      case "4":
-        filteredAction = "Due";
-        break;
-      default:
-        break;
-    }
-    window.location.href = "/?filter=" + filteredAction;
+function filter_sort() {
+  $("#select-filter, #select-sorted").on("change", () => {
+    const filter = $("#select-filter option:selected").text();
+    const sorted = $("#select-sorted option:selected").text();
+    window.location.href = `/?filter=${filter}&sorted=${sorted}`;
   });
 }
 
-filterActivities();
+filter_sort();
 datePicker();
 editIconClick();
 deleteIconClick();
